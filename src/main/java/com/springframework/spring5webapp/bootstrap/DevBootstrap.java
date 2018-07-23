@@ -35,31 +35,30 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
     public void initData() {
         // Eric
         Author eric = new Author("Eric","Evans");
-        Publisher collins =
-                new Publisher();
-        collins.setName("Collins Harper");
-        collins.setAddress("North London");
-        pubRepo.save(collins);
+        Publisher hc = new Publisher("Harper Collins", "New York");
         Book ddd = new Book("domain driven design","1234",
-               collins);
+               hc);
 
-        System.out.println(eric);
+     //   System.out.println(eric);
         eric.getBooks().add(ddd);
         ddd.getAuthors().add(eric);
+
         authRepo.save(eric);
+        pubRepo.save(hc);
         bookRepo.save(ddd);
 
 
         //Rod
         Author rod = new Author("Rod","Johnson");
-        Publisher worx =  new Publisher();
-        worx.setName("Worx");
-        pubRepo.save(worx);
+        Publisher work = new Publisher("Work", "New Mexico");
         Book jee = new Book("JEE development","1235",
-              worx );
+              work );
 
         rod.getBooks().add(jee);
+        jee.getAuthors().add(rod);
+
         authRepo.save(rod);
+        pubRepo.save(work);
         bookRepo.save(jee);
 
     }
